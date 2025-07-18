@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? "Modifier une tâche" : "Ajouter une tâche" }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre *</label>
+      <input
+        id="title"
+        type="text"
+        class="form-control"
+        formControlName="title"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        formControlName="description"
+      ></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Date limite</label>
+      <input
+        id="dueDate"
+        type="date"
+        class="form-control"
+        formControlName="dueDate"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Statut</label>
+      <select id="status" class="form-select" formControlName="status">
+        <option value="New">Nouveau</option>
+        <option value="InProgress">En cours</option>
+        <option value="Paused">En pause</option>
+        <option value="Completed">Terminé</option>
+        <option value="Canceled">Annulé</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success me-2"
+      [disabled]="form.invalid"
+    >
+      {{ isEditMode ? "Mettre à jour" : "Ajouter" }}
+    </button>
+    <a routerLink="/tasks" class="btn btn-secondary">Annuler</a>
+  </form>
+</div>
