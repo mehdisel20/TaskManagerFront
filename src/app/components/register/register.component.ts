@@ -12,10 +12,12 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  username = '';
+  firstName = '';
+  lastName = '';
   email = '';
   password = '';
   confirmPassword = '';
+  birthDay = '';
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -27,14 +29,17 @@ export class RegisterComponent {
     }
 
     const payload = {
-      username: this.username,
+      firstName: this.firstName,
+      lastName: this.lastName,
       email: this.email,
       password: this.password,
+      birthDay: this.birthDay
     };
 
     this.authService.register(payload).subscribe({
       next: () => this.router.navigate(['/login']),
-      error: err => this.errorMessage = err.error.message || "Erreur lors de l'inscription."
+      error: err => this.errorMessage = err.error || "Erreur lors de l'inscription."
     });
   }
+
 }

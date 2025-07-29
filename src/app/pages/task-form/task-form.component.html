@@ -1,39 +1,52 @@
-<div class="container mt-4">
-  <h2>{{ isEditMode ? "Modifier une tâche" : "Ajouter une tâche" }}</h2>
+<div class="container mx-auto px-4 py-8 max-w-xl">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">
+    {{ isEditMode ? "Modifier une tâche" : "Ajouter une tâche" }}
+  </h2>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-      <label for="title" class="form-label">Titre *</label>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="bg-white p-6 rounded-lg shadow space-y-5">
+    <!-- Titre -->
+    <div>
+      <label for="title" class="block text-gray-700 font-medium mb-1">Titre *</label>
       <input
         id="title"
         type="text"
-        class="form-control"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         formControlName="title"
+        placeholder="Ex: Terminer rapport"
       />
     </div>
 
-    <div class="mb-3">
-      <label for="description" class="form-label">Description</label>
+    <!-- Description -->
+    <div>
+      <label for="description" class="block text-gray-700 font-medium mb-1">Description</label>
       <textarea
         id="description"
-        class="form-control"
+        rows="3"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         formControlName="description"
+        placeholder="Détails de la tâche"
       ></textarea>
     </div>
 
-    <div class="mb-3">
-      <label for="dueDate" class="form-label">Date limite</label>
+    <!-- Date -->
+    <div>
+      <label for="dueDate" class="block text-gray-700 font-medium mb-1">Date limite</label>
       <input
         id="dueDate"
         type="date"
-        class="form-control"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         formControlName="dueDate"
       />
     </div>
 
-    <div class="mb-3">
-      <label for="status" class="form-label">Statut</label>
-      <select id="status" class="form-select" formControlName="status">
+    <!-- Statut -->
+    <div>
+      <label for="status" class="block text-gray-700 font-medium mb-1">Statut</label>
+      <select
+        id="status"
+        formControlName="status"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
         <option value="New">Nouveau</option>
         <option value="InProgress">En cours</option>
         <option value="Paused">En pause</option>
@@ -42,13 +55,12 @@
       </select>
     </div>
 
-    <button
-      type="submit"
-      class="btn btn-success me-2"
-      [disabled]="form.invalid"
-    >
-      {{ isEditMode ? "Mettre à jour" : "Ajouter" }}
-    </button>
-    <a routerLink="/tasks" class="btn btn-secondary">Annuler</a>
+    <!-- Boutons -->
+    <div class="flex justify-end gap-3 pt-3">
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow" [disabled]="form.invalid">
+        {{ isEditMode ? "Mettre à jour" : "Ajouter" }}
+      </button>
+      <a routerLink="/tasks" class="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-800">Annuler</a>
+    </div>
   </form>
 </div>

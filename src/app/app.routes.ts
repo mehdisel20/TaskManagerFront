@@ -11,11 +11,11 @@ import { RegisterComponent } from './components/register/register.component';
 export const routes: Routes = [
   
   
-  {path: 'tasks', component : TaskListComponent},
+  {path: 'tasks', component : TaskListComponent, canActivate: [AuthGuard]},
 
-  {path: 'tasks/add', component : TaskFormComponent},
+  {path: 'tasks/add', component : TaskFormComponent, canActivate: [AuthGuard]},
 
-  { path : 'tasks/edit/:id', component: TaskFormComponent},
+  { path : 'tasks/edit/:id', component: TaskFormComponent, canActivate: [AuthGuard]},
 
   {path:'login', component: LoginComponent},
 
